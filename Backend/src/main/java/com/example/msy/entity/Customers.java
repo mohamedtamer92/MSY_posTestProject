@@ -1,9 +1,11 @@
 package com.example.msy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -28,6 +30,9 @@ public class Customers {
     @Column(name = "Discount")
     private Double discount;
 
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy="customer" ,cascade=  {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
+    private List<Invoice> userInvoices ;
 
     public Customers() {
     }
