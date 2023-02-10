@@ -1,5 +1,7 @@
 package com.example.msy.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -7,12 +9,13 @@ import java.sql.Date;
 @Table(name = "customers")
 public class Customers {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    @GeneratedValue( strategy =GenerationType.IDENTITY)
     @Column(name = "Customer_id")
-    private Long id;
+    private int id;
 
     @Column(name = "Day")
-    private Date day;
+    private String day;
 
 
     @Column(name = "Name")
@@ -29,7 +32,7 @@ public class Customers {
     public Customers() {
     }
 
-    public Customers(Long id, Date day, String name, String phone, Double discount) {
+    public Customers(int id, String day, String name, String phone, Double discount) {
         this.id = id;
         this.day = day;
         this.name = name;
@@ -37,19 +40,19 @@ public class Customers {
         this.discount = discount;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Date getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(Date day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
