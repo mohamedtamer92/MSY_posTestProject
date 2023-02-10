@@ -21,17 +21,43 @@ public class CustomerRepoImpel implements CustomerRepo{
 
     public Customers getCustomerById(int id){
         Session currentSession = entityManager.unwrap(Session.class);
-       // Query<Customers> query = currentSession.createQuery("from customers where Customer_id = "+id+"",Customers.class);
         Customers customer = currentSession.get(Customers.class,id);
         return customer;
     }
+
+
     @Override
-    public List<Customers> getCustomers() {
+    public Customers getCustomerByPhone(String phone) {
         Session currentSession = entityManager.unwrap(Session.class);
-         Query<Customers> query = currentSession.createQuery("from Customers",Customers.class);
-         List<Customers> customers = query.getResultList();
-         return customers;
-
-
+        Query<Customers> query = currentSession.createQuery("from Customers where Phone = :phone",Customers.class);
+        query.setParameter("phone",phone);
+        Customers customer = query.getSingleResult();
+        return customer;
     }
+
+    @Override
+    public List<Customers> getAllCustomers() {
+       Session currentSession = entityManager.unwrap(Session.class);
+       Query<Customers> query = currentSession.createQuery("from Customers",Customers.class);
+       List<Customers> customers = query.getResultList();
+
+        return customers;
+    }
+
+    @Override
+    public boolean addCustomer(Customers customer) {
+        return false;
+    }
+
+    @Override
+    public boolean updateCustomer(Customers customer) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteCustomerById(int customerId) {
+        return false;
+    }
+
+
 }

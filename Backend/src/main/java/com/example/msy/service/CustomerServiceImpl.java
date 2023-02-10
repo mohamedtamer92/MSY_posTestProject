@@ -17,21 +17,45 @@ public class CustomerServiceImpl  implements  CustomerService{
         this.customersRepo = customersRepo;
     }
 
+    public boolean customerPhoneExist(String phone){
+        List<Customers> customers = getAllCustomers();
+
+        for (int i = 0 ; i < customers.size() ; i++){
+            if(customers.get(i).getPhone().equals(phone)){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
-    public Customers getCustomerById(int id) {
-        System.out.println("From Services : "+id);
-        Customers c = customersRepo.getCustomerById(id);
-        System.out.println("From Data : "+c.getId());
-        return c;
+    public Customers getCustomerById(int customerId) {
+        return customersRepo.getCustomerById(customerId);
+    }
+
+    @Override
+    public Customers getCustomerByPhone(String phone) {
+        if(customerPhoneExist(phone))
+        return customersRepo.getCustomerByPhone(phone);
+        else return null;
     }
 
     @Override
     public List<Customers> getAllCustomers() {
-        return customersRepo.getCustomers();
+        return customersRepo.getAllCustomers();
     }
 
     @Override
-    public Customers findFirstByPhone(String phone) {
-        return null;
+    public boolean addCustomer(Customers customer) {
+        return false;
+    }
+
+    @Override
+    public boolean updateCustomer(Customers customer) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteCustomerById(int customerId) {
+        return false;
     }
 }

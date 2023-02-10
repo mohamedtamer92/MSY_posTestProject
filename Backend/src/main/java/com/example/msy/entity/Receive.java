@@ -12,7 +12,7 @@ public class Receive {
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "Product_id")
-    private Products products;
+    private Products product;
 
     @Column(name = "Day")
     private String day;
